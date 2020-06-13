@@ -17,8 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic.base import RedirectView
+from django.urls import include, re_path
+from django.http import HttpResponse, HttpResponseRedirect
 
 from .views import home_page, about_page, contact_page, login_page, register_page
+
+favicon_view = RedirectView.as_view(url='/static/img/favicon.ico', permanent=True)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +32,7 @@ urlpatterns = [
 	path('contact/', contact_page),
     path('login/', login_page),
     path('register/', register_page),
+    re_path(r'^favicon\.ico$', favicon_view),
 ]
 if settings.DEBUG:
     urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
