@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
 from django.urls import include, re_path
 from django.http import HttpResponse, HttpResponseRedirect
-
+from products.views import ProductListView, product_list_view
 from .views import home_page, about_page, contact_page, login_page, register_page
 
 favicon_view = RedirectView.as_view(url='/static/img/favicon.ico', permanent=True)
@@ -32,6 +32,8 @@ urlpatterns = [
 	path('contact/', contact_page),
     path('login/', login_page),
     path('register/', register_page),
+    path('products/', ProductListView.as_view()),
+    path('products-fbv/', product_list_view),   
     re_path(r'^favicon\.ico$', favicon_view),
 ]
 if settings.DEBUG:
