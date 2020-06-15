@@ -6,6 +6,14 @@ class Product(models.Model): #product_category
     description = models.TextField()
     price       = models.DecimalField(decimal_places=2, max_digits=20, default=100.00)
 
-    history       = models.CharField(max_length=200)
-    harmonizacao  = models.CharField(max_length=120)
-    premios       = models.CharField(max_length=120)
+    history       = models.TextField(null=True)
+    harmonizacao  = models.TextField(null=True)
+    premios       = models.TextField(null=True)
+
+    #python 3
+    def __str__(self):
+        return self.title
+    #python 2
+    def __unicode__(self):
+        return self.title
+
