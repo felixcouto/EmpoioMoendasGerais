@@ -46,7 +46,7 @@ def product_detail_view(request, pk = None, *args, **kwargs):
         raise Http404("Esse produto não existe!")
 
     
-    #queryset = Product.objects.all()
+    queryset = Product.objects.all()
     
     context = {
         'object': instance
