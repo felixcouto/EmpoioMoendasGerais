@@ -20,9 +20,9 @@ from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
 from django.urls import include, re_path
 from django.http import HttpResponse, HttpResponseRedirect
-from products.views import (ProductListView,
-                            product_list_view,
-                            ProductDetailView,
+from products.views import (ProductListView, 
+                            product_list_view, 
+                            ProductDetailView, 
                             product_detail_view,
                             ProductFeaturedListView,
                             ProductFeaturedDetailView)
