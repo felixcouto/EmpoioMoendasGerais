@@ -1,7 +1,26 @@
 from django.db import models
 
 # Create your models here.
+
+#Custom queryset
+class ProductQuerySet(models.query.QuerySet):
+    def active(self):
+        return self.filter(active = True)
+
+    def featured(self):
+        return self.filter(featured = True, active = True)
+
 class ProductManager(models.Manager):
+    def get_queryset(self):
+        return ProductQuerySet(self.model, using = self._db)
+    
+    def all(self):
+        return self.get_queryset().active()
+
+    def featured(self):
+        #return self.get_queryset().filter(featured = True)
+        return self.get_queryset().featured()
+    
     def get_by_id(self, id):
         qs = self.get_queryset().filter(id = id)
         if qs.count() == 1:
@@ -17,6 +36,9 @@ class Product(models.Model): #product_category
     history       = models.TextField(null = True, blank = True)
     harmonizacao  = models.TextField(null = True, blank = True)
     premios       = models.TextField(null = True, blank = True)
+
+    featured    = models.BooleanField(default = False)
+    active      = models.BooleanField(default = True)
 
     objects = ProductManager()
     
