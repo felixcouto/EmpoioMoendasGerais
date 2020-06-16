@@ -1,6 +1,8 @@
 {{ object.title }} <br/>
 {{ object.description }} <br/>
-<img src='{{ object.image.url }}' class='img-fluid' /> <br/>
+{% if object.image %}
+    <img src='{{ object.image.url }}' class='img-fluid'/>
+{% endif %}
 {{ object.price }} <br/>
 {{ object.history }} <br/>
 {{ object.harmonizacao }} <br/>
