@@ -26,7 +26,7 @@ from django.views.generic.base import RedirectView
 #                             ProductDetailSlugView,
 #                             ProductFeaturedListView,
 #                             ProductFeaturedDetailView)
-from .views import (home_page,
+#from .views import (home_page,
                     about_page,
                     contact_page,
                     login_page,
