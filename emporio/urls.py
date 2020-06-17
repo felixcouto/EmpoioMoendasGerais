@@ -18,6 +18,7 @@ from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
+from django.views.generic import TemplateView
 #from django.http import HttpResponse, HttpResponseRedirect
 # from products.views import (ProductListView, 
 #                             product_list_view, 
@@ -43,6 +44,7 @@ urlpatterns = [
     path('login/', login_page, name='login'),
     path('logout/', logout_page, name='logout'),
     path('register/', register_page, name='register'),
+    path('bootstrap/', TemplateView.as_view(template_name='bootstrap/example.html')),
     path('products/', include("products.urls", namespace="products")),
     # path('featured/', ProductFeaturedListView.as_view()),
     # path('featured/<int:pk>/', ProductFeaturedDetailView.as_view()),
