@@ -1,5 +1,9 @@
 from django import forms
 from django.contrib.auth import get_user_model
+#from input_mask.widgets import InputMask
+
+#class MaskCpf(InputMask):
+#   mask = {'cpf': '000.000.000-00'}
 
 User = get_user_model()
 class ContactForm(forms.Form):
@@ -39,16 +43,32 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 class RegisterForm(forms.Form):
-    username = forms.CharField()
+    name = forms.CharField()
+    lastname = forms.CharField()
+    cpf = forms.CharField()
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)
 
-    def clean_username(self):
-        username = self.cleaned_data.get('username')
-        qs = User.objects.filter(username=username)
+    def clean_name(self):
+        name = self.cleaned_data.get('name')
+        #qs = User.objects.filter(cpf=cpf)
+        #if qs.exists():
+            #raise forms.ValidationError("Esse cpf já existeem nossa base de dados.")
+        return name
+
+    def clean_lastname(self):
+        lastname = self.cleaned_data.get('lastname')
+        #qs = User.objects.filter(cpf=cpf)
+        #if qs.exists():
+            #raise forms.ValidationError("Esse cpf já existeem nossa base de dados.")
+        return lastname
+    
+    def clean_cpf(self):
+        username = self.cleaned_data.get('cpf')
+        qs = User.objects.filter(sername=cpf)
         if qs.exists():
-            raise forms.ValidationError("Esse usuário já existe, escolha outro nome.")
+            raise forms.ValidationError("Esse cpf já existeem nossa base de dados.")
         return username
     
     def clean_email(self):
